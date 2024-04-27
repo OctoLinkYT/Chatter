@@ -16,4 +16,9 @@ echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/
 sudo apt update
 sudo apt install -y ngrok
 
-echo "Setup completed!"
+# Add the script to rc.local to run on startup
+sudo sed -i '/^exit 0/d' /etc/rc.local
+echo "/root/chatter.sh &" | sudo tee -a /etc/rc.local
+echo "exit 0" | sudo tee -a /etc/rc.local
+
+echo "Setup completed! chatter.sh will run on startup."
