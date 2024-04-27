@@ -1,8 +1,8 @@
 #!/bin/bash
-
+chmod +x install.sh
 # Make the script executable
 chmod +x chatter.sh
-
+echo CHATTER IS INSTALLING.
 # Move the script to the root directory
 sudo mv chatter.sh /root/
 
