@@ -1,7 +1,7 @@
 <?php
-// Define username and password
-$username = "wholeworldcoding";
-$password = "Pika1211";
+// It is suggested that you change this
+$username = "admin";
+$password = "admin";
 
 // Check if the user is authenticated
 if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) ||
