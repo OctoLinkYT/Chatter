@@ -4,7 +4,7 @@ chmod +x install.sh
 chmod +x chatter.sh
 echo CHATTER IS INSTALLING.
 # Move the script to the root directory
-sudo mv chatter.sh /root/
+sudo mv chatter.sh ~
 
 # Install PHP
 sudo apt update
@@ -18,7 +18,9 @@ sudo apt install -y ngrok
 
 # Add the script to rc.local to run on startup
 sudo sed -i '/^exit 0/d' /etc/rc.local
-echo "/root/chatter.sh &" | sudo tee -a /etc/rc.local
+echo "./chatter.sh &" | sudo tee -a /etc/rc.local
 echo "exit 0" | sudo tee -a /etc/rc.local
 
+read -p "Enter your ngrok authentication token: " NGROK_AUTH_TOKEN
+ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
 echo "Setup completed! chatter.sh will run on startup."
