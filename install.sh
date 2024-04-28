@@ -34,7 +34,7 @@ echo [c] - Preparing auth...
 echo 
 read -p "Enter your ngrok authentication token: " NGROK_AUTH_TOKEN
 # Add the script to .bashrc for running on terminal startup
-echo "@reboot /home/$(whoami)/chatter.sh" >> ~/.bashrc
+echo "./chatter.sh" >> ~/.bashrc
 
 # Set ngrok auth token
 ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
