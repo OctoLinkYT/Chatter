@@ -18,7 +18,7 @@ sudo apt install -y ngrok
 
 # Add the script to rc.local to run on startup
 sudo sed -i '/^exit 0/d' /etc/rc.local
-echo "./chatter.sh &" | sudo tee -a /etc/rc.local
+echo "(sleep 30 && /home/<username>/chatter.sh) &" | sudo tee -a /etc/rc.local
 echo "exit 0" | sudo tee -a /etc/rc.local
 
 read -p "Enter your ngrok authentication token: " NGROK_AUTH_TOKEN
