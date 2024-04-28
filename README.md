@@ -3,4 +3,6 @@ Chatter  is a new and easy lightweight chat system. It is written in php, and yo
 
 Run the following to install chatter:
 
+```bash
 git clone https://github.com/OctoLinkYT/chatter.git && cd chatter && chmod +x install.sh && ./install.sh
+```
