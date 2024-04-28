@@ -1,5 +1,5 @@
 #!/bin/bash
-chmod +x install.sh
+
 # Make the script executable
 chmod +x chatter.sh
 clear
@@ -33,10 +33,29 @@ clear
 echo [c] - Preparing auth...
 echo 
 read -p "Enter your ngrok authentication token: " NGROK_AUTH_TOKEN
-# Add the script to rc.local to run on startup
-sudo sed -i '/^exit 0/d' /etc/rc.local
-echo "(sleep 30 && /home/<username>/chatter.sh) &" | sudo tee -a /etc/rc.local
-echo "exit 0" | sudo tee -a /etc/rc.local
-cleear
+# Add the script to systemd for running on startup
+sudo tee /etc/systemd/system/chatter.service >/dev/null <<EOF
+[Unit]
+Description=Chatter Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/$(whoami)/chatter.sh
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Reload systemd
+sudo systemctl daemon-reload
+
+# Enable and start the service
+sudo systemctl enable chatter.service
+sudo systemctl start chatter.service
+
+# Set ngrok auth token
 ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
+
+clear
 echo "Setup completed! chatter.sh will run on startup."
