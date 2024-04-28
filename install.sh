@@ -33,29 +33,11 @@ clear
 echo [c] - Preparing auth...
 echo 
 read -p "Enter your ngrok authentication token: " NGROK_AUTH_TOKEN
-# Add the script to systemd for running on startup
-sudo tee /etc/systemd/system/chatter.service >/dev/null <<EOF
-[Unit]
-Description=Chatter Service
-After=network.target
-
-[Service]
-Type=simple
-ExecStart=/home/$(whoami)/chatter.sh
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# Reload systemd
-sudo systemctl daemon-reload
-
-# Enable and start the service
-sudo systemctl enable chatter.service
-sudo systemctl start chatter.service
+# Add the script to .bashrc for running on terminal startup
+echo "@reboot /home/$(whoami)/chatter.sh" >> ~/.bashrc
 
 # Set ngrok auth token
 ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
 
 clear
-echo "Setup completed! chatter.sh will run on startup."
+echo "Setup completed! chatter.sh will run on terminal startup."
