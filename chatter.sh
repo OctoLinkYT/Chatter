@@ -5,3 +5,8 @@
 
 # Start PHP server
 php -S localhost:8080 -t chatter
+
+clear
+echo C H A T T E R
+echo [wholeworldcoding]
+echo 
