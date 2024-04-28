@@ -6,6 +6,10 @@ clear
 echo C H A T T E R
 echo [wholeworldcoding]
 sleep 2
+
+# Ask for ngrok domain
+read -p "Enter the desired ngrok domain (e.g., morally-elegant-pig.ngrok-free.app): " NGROK_DOMAIN
+
 echo [c] - Moving [chatter.sh] to root...
 # Move the script to the root directory
 sudo mv chatter.sh ~
@@ -33,11 +37,15 @@ clear
 echo [c] - Preparing auth...
 echo 
 read -p "Enter your ngrok authentication token: " NGROK_AUTH_TOKEN
+
 # Add the script to .bashrc for running on terminal startup
 echo "./chatter.sh" >> ~/.bashrc
 
 # Set ngrok auth token
 ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
+
+# Set ngrok domain in chatter.sh
+sed -i "s/morally-elegant-pig.ngrok-free.app/$NGROK_DOMAIN/" ~/chatter.sh
 
 clear
 echo "Setup completed! chatter.sh will run on terminal startup."
