@@ -1,5 +1,5 @@
-# CHATTER v1.0 BETA
-Chatter  is a new and easy lightweight chat system. It is written in php, and you can host it on any linux device.
+# CHATTER v1.0
+Chatter  is a new and easy lightweight chat system. It is written in php, and you can host it on any linux device. Note that it utilizes NGROK to run the program.
 
 Run the following to install chatter:
 
