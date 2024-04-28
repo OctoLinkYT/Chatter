@@ -6,3 +6,4 @@ Run the following to install chatter:
 ```bash
 git clone https://github.com/OctoLinkYT/chatter.git && cd chatter && chmod +x install.sh && ./install.sh
 ```
+Note that chatter does run on bootup by default.
